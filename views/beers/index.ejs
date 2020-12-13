@@ -1,1 +1,18 @@
-<h1> home dashboard</h1>
+<%- include('../partials/header') %>
+<%- include('../partials/nav')  %>
+ 
+<h3>Beer Collection</h3>
+
+<% beers.forEach(beer=> { %>
+  <div class="card" style="width: 18rem;">
+    <img src="<%= beer.imageUrl %>" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= beer.title %> </h5>
+      <p class="card-text">Released: <%= beer.released.toLocaleString().split(',')[0] %></p>
+      <p class="card-text">Metacritic Score: <%= beer.metacriticScore ? beer.metacriticScore : 'N/A' %></p>
+      <a href="/beers/<%= beer.slug %>" class="btn btn-primary">Details</a>
+    </div>
+  </div>
+<% }) %>
+
+<%- include('../partials/footer') %>
