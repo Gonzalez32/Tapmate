@@ -4,7 +4,7 @@ const axios = require('axios')
 module.exports = {
 //   new: newBeer,
 //   search,
-  show,
+//   show,
 //   addToWatchList,
 //   removeFromWatchList,
 //   addToCollection,
@@ -42,34 +42,34 @@ module.exports = {
 
 
 
-function show(req, res) {
-  axios
-    .get(`https://api.punkapi.com/v2/beers/`)
-    .then((response) => {
-      Beer.findOne({ id: response.data.id })
-      .populate('favoritedBy')
-      .then((beer) => {
-        if(beer) {
-          res.render("beers/show", {
-            title: "Beer List",
-            user: req.user,
-            beer: response.data,
-            favoritedBy: beer.favoritedBy,
-            beerId: beer._id,
-            reviews: beer.reviews
-          }); 
-        } else {
-          res.render("beers/show", {
-            title: "Beer Details",
-            user: req.user,
-            beer: response.data,
-            favoritedBy: [""],
-            reviews: [""]
-          }); 
-        }
-      })
-    });
-}
+// function show(req, res) {
+//   axios
+//     .get(`https://api.punkapi.com/v2/beers/`)
+//     .then((response) => {
+//       Beer.findOne({ id: response.data.id })
+//       .populate('favoritedBy')
+//       .then((beer) => {
+//         if(beer) {
+//           res.render("beers/show", {
+//             title: "Beer List",
+//             user: req.user,
+//             beer: response.data,
+//             favoritedBy: beer.favoritedBy,
+//             id: beer._id,
+//             reviews: beer.reviews
+//           }); 
+//         } else {
+//           res.render("beers/show", {
+//             title: "Beer Details",
+//             user: req.user,
+//             beer: response.data,
+//             favoritedBy: [""],
+//             reviews: [""]
+//           }); 
+//         }
+//       })
+//     });
+// }
 
 // function addToWatchList(req, res) {
 //   req.user.watchList.push(req.body)
@@ -131,12 +131,15 @@ function show(req, res) {
 // }
 
 function index(req, res) {
-    Beer.find({}, (err, beers) => {
-        res.render('beers/index', {
-            title: "Beer Collections",
-            user: req.user,
-            beers
-             
+    axios.get(`https://api.punkapi.com/v2/beers/`)
+    .then((resp) => {
+        Beer.find({}, (err, beers) => {
+            // console.log(resp.data);
+            res.render('beers/index', {
+                title: "Beer Collections",
+                user: req.user,
+                beers: resp.data
+            })
         })
     })
     

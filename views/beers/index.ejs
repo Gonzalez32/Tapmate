@@ -3,13 +3,13 @@
 
 <h3>Beer Collection</h3>
 
-<% beers.forEach(beer => { %>
-  <div class="card" style="width: 18rem;">
-    <img src="<%= beer.image_Url %>" class="card-img-top" alt="...">
+<% beers.forEach((beer) => { %>
+  <div class="" style="width: 18rem;">
+    <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><%= beer.name %> </h5>
       <p class="card-text">Released: <%= beer.first_brewed %></p>
-      <p class="card-text">Metacritic Score: <%= beer.metacriticScore ? beer.metacriticScore : 'N/A' %></p>
+      
       <!-- <a href="/beers/<%= beer %>" class="btn btn-primary">Details</a> -->
     </div>
   </div>
