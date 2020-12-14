@@ -2,7 +2,7 @@ const Beer = require('../models/beer')
 const axios = require('axios')
 
 module.exports = {
-  new: newBeer,
+//   new: newBeer,
 //   search,
   show,
 //   addToWatchList,
@@ -12,13 +12,13 @@ module.exports = {
   index
 }
 
-function newBeer(req, res) {
-  res.render("beers/new", {
-    title: "Beer Search",
-    user: req.user,
-    results: null
-  })
-}
+// function newBeer(req, res) {
+//   res.render("beers/new", {
+//     title: "Beer Search",
+//     user: req.user,
+//     results: null
+//   })
+// }
 
 // function search(req, res) {
 //   axios
@@ -35,7 +35,7 @@ function newBeer(req, res) {
 
 function show(req, res) {
   axios
-    .get(`https://api.punkapi.com/v2/beers/`)
+    .get("https://api.punkapi.com/v2/beers/")
     .then((response) => {
       Beer.findOne({ name: response.data.name })
       .populate('favoritedBy')
@@ -110,13 +110,25 @@ function show(req, res) {
 //   })
 // }
 
+// function index(req, res) {
+//   Beer.find({ favoritedBy: req.user._id })
+//   .then((beers) => {
+//     res.render('beers/index', {
+//       title: "Beer Collection",
+//       user: req.user,
+//       beers
+//     })
+//   })
+// }
+
 function index(req, res) {
-  Beer.find({ favoritedBy: req.user._id })
-  .then((beers) => {
-    res.render('beers/index', {
-      title: "Beer Collection",
-      user: req.user,
-      beers
+    Beer.find({}, (err, beers) => {
+        res.render('beers/index', {
+            title: "Beer Collections",
+            user: req.user,
+            beers
+             
+        })
     })
-  })
+    
 }

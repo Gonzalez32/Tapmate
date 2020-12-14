@@ -14,10 +14,9 @@
 
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <img src="https://lh3.googleusercontent.com/proxy/Tb2ZM6iAVZed-xTJp7_pauRK1UFOAA1Hv3vttjxxVRlo2aYsTLYjfifNZSrCIE9ZMIheVr2RPStN6IsTu0xq5Yv2ihsr7kpdrt-QMEygxSYz">
-        Tapmate
-      </a>
+        <img src="https://lh3.googleusercontent.com/proxy/Tb2ZM6iAVZed-xTJp7_pauRK1UFOAA1Hv3vttjxxVRlo2aYsTLYjfifNZSrCIE9ZMIheVr2RPStN6IsTu0xq5Yv2ihsr7kpdrt-QMEygxSYz" width="75">
+      <!-- <a class="navbar-item" href="/">
+      </a> -->
 
       <% if (user) { %> 
   
@@ -30,12 +29,16 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item">
+        <a class="navbar-item" href="/">
           Home
         </a>
   
-        <a class="navbar-item">
-          Documentation
+        <a class="navbar-item" href="/beers">
+          My Beers
+        </a>
+
+        <a class="navbar-item" href="/beers/show">
+            Display Beers
         </a>
   
         <div class="navbar-item has-dropdown is-hoverable">
@@ -44,8 +47,8 @@
           </a>
   
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
+            <a class="navbar-item" href="/users">
+              User Settings
             </a>
             <a class="navbar-item">
               Jobs
