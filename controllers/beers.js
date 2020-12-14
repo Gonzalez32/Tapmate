@@ -33,20 +33,29 @@ module.exports = {
 //     })
 // }
 
+// function show(req, res) {
+//     axios.get("https://api.punkapi.com/v2/beers/")
+//     .then((resp) => {
+//         res.render("beers/show", {beerData: resp.data})
+//     })
+// }
+
+
+
 function show(req, res) {
   axios
-    .get("https://api.punkapi.com/v2/beers/")
+    .get(`https://api.punkapi.com/v2/beers/`)
     .then((response) => {
-      Beer.findOne({ name: response.data.name })
+      Beer.findOne({ id: response.data.id })
       .populate('favoritedBy')
       .then((beer) => {
         if(beer) {
           res.render("beers/show", {
-            title: "Beer Details",
+            title: "Beer List",
             user: req.user,
             beer: response.data,
             favoritedBy: beer.favoritedBy,
-            gameId: beer._id,
+            beerId: beer._id,
             reviews: beer.reviews
           }); 
         } else {
