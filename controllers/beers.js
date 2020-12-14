@@ -142,5 +142,4 @@ function index(req, res) {
             })
         })
     })
-    
 }

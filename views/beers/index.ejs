@@ -4,13 +4,13 @@
 <h3>Beer Collection</h3>
 
 <% beers.forEach((beer) => { %>
-  <div class="" style="width: 18rem;">
+  <div class="" style="width: 8rem;">
     <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title"><%= beer.name %> </h5>
-      <p class="card-text">Released: <%= beer.first_brewed %></p>
-      
-      <!-- <a href="/beers/<%= beer %>" class="btn btn-primary">Details</a> -->
+      <h5 class=""> Beer Name: <%= beer.name %></h5><br>
+      <h6 class=""> Tagline: <%= beer.tagline %></h6><br>
+      <h6 class="">Released: <%= beer.first_brewed %></h6><br>
+      <a href="/beers/<%= beer._id %>">Details</a>
     </div>
   </div>
 <% }) %>
