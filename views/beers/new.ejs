@@ -3,9 +3,17 @@
 
 <h1><%= title %></h1>
 
-<form action="/beers" method="POST">
+<form action="/" method="POST">
     <div>
-        <label for=""></label>
+        <label for="name">name: </label>
+        <input type="text" name="name" id="" placeholder="Enter Beer Name"><br>
+        <label for="tagline">tagline: </label>
+        <input type="text" name="tagline" id="" placeholder="Enter Tagline"><br>
+        <label for="description">description: </label>
+        <input type="text" name="description" id="" placeholder="Enter Description"><br>
+        <label for="image_url">Beer Image: </label>
+        <input type="url" name="image_url" id="" placeholder="Beer Image"><br>
+        <button type="submit">Add Beer</button>
     </div>
 </form>
 
