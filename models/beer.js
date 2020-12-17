@@ -15,7 +15,7 @@ const reviewSchema = new Schema(
 
 const beerSchema = new Schema(
     {
-        
+        id: Number,
         name: String,
         tagline: String,
         first_brewed: Date,

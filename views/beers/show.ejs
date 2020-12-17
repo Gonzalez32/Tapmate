@@ -1,8 +1,16 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav')  %>
 
-<h1>display beer!</h1>
-<h3>Name: <%= beer.name %></h3> 
+<h1> <%= title %> </h1>
+
+<% beer.forEach(b => { %>
+    <div>
+        <img src="<%= b.image_url %>" class="" style="width: 10rem;" alt="...">
+    </div>
+    
+
+<% }) %> 
+
 
 
 

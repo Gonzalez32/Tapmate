@@ -3,16 +3,20 @@
 
 <h3>Beer Collection</h3>
 
-<% beers.forEach((beer) => { %>
-  <div class="" style="width: 8rem;">
-    <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class=""> Beer Name: <%= beer.name %></h5><br>
-        <h6 class=""> Tagline: <%= beer.tagline %></h6><br>
-        <h6 class="">Released: <%= beer.first_brewed %></h6><br>
-        <a href="/beers/show">More Info</a>
+
+    <% beers.forEach((beer) => { %>
+      <div class="table is-bordered">
+        <table class="" >
+          <!-- <img src="<%= beer.image_url %>" class="card-img-top" alt="..."> -->
+            
+              <tr class=""> Beer Name: <%= beer.name %></tr><br>
+              <tr class=""> Tagline: <%= beer.tagline %></tr><br>
+              <!-- <h6 class="">Released: <%= beer.first_brewed %></h6><br> -->
+              <a href="/beers/<%= beer.id %>">Beer Details</a>
+        
+        </table>
       </div>
-  </div>
-<% }) %>
+    <% }) %>
+
 
 <%- include('../partials/footer') %>

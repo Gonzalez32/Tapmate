@@ -1,21 +1,21 @@
 const Beer = require('../models/beer')
 const axios = require('axios')
 
+
 module.exports = {
     new: newBeer,
-    create,
+    show,
     index,
 }
 
 function newBeer(req, res) {
     res.render("beers/new", {
         title: "Beer",
+        user: req.user,
+        
     })
 }
 
-function create(req, res) {
-    
-}
 
 function index(req, res) {
     axios.get(`https://api.punkapi.com/v2/beers/`)
@@ -29,4 +29,48 @@ function index(req, res) {
             })
         })
     })
+}
+
+// function show(req, res) {
+//     axios.get(`https://api.punkapi.com/v2/beers/`)
+//     .then((resp) => {
+//         Beer.findById(req.params.id, (err, beer) => {
+//             res.render('beers/show', {
+//                 title: "Beer info",
+//                 user: req.user,
+//                 beers: resp.data,
+//                 beerId: resp.data.id,
+//                 reviews: beer.reviews,
+//             })
+//         })
+//     })
+// }
+
+function show(req, res) {
+    axios
+      .get(`https://api.punkapi.com/v2/beers/${req.params.id}`)
+      .then((response) => {
+        Beer.findOne({ id: response.data.id })
+        .populate('favoritedBy')
+        .then((beer) => {
+          if(beer) {
+            res.render("beers/show", {
+              title: "Beer Details",
+              user: req.user,
+              beer: response.data,
+              favoritedBy: beer.favoritedBy,
+              beerId: beer._id,
+              reviews: beer.reviews
+            }); 
+          } else {
+            res.render("beers/show", {
+              title: "Beer Details",
+              user: req.user,
+              beer: response.data,
+              favoritedBy: [""],
+              reviews: [""]
+            }); 
+          }
+        })
+      });
 }
