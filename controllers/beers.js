@@ -12,7 +12,7 @@ function newBeer(req, res) {
     res.render("beers/new", {
         title: "Beer",
         user: req.user,
-        
+
     })
 }
 
@@ -30,21 +30,6 @@ function index(req, res) {
         })
     })
 }
-
-// function show(req, res) {
-//     axios.get(`https://api.punkapi.com/v2/beers/`)
-//     .then((resp) => {
-//         Beer.findById(req.params.id, (err, beer) => {
-//             res.render('beers/show', {
-//                 title: "Beer info",
-//                 user: req.user,
-//                 beers: resp.data,
-//                 beerId: resp.data.id,
-//                 reviews: beer.reviews,
-//             })
-//         })
-//     })
-// }
 
 function show(req, res) {
     axios
@@ -72,5 +57,5 @@ function show(req, res) {
             }); 
           }
         })
-      });
+    });
 }
