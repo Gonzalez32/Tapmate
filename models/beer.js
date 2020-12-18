@@ -21,11 +21,6 @@ const beerSchema = new Schema(
         first_brewed: Date,
         description: String,
         image_url: String,
-        abv: Number,
-        ibu: Number,
-        ingredients: {type:String},
-        brewers_tips: String,
-        food_pairing: String,
         favoritedBy: [{ type: Schema.Types.ObjectId, ref: "User" }],
         reviews: [reviewSchema],
     },{
