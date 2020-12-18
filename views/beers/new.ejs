@@ -1,9 +1,31 @@
 <%- include('../partials/header') %> 
 <%- include('../partials/nav') %> 
 
-<h1>new page</h1>
+<h1><%= title %> </h1>
 
+<form action="/beers/search" method="POST">
+    <div class="form-row">
+      <div class="col-md-4">
+        <input type="text" class="form-control" name="query" placeholder="Search for Beer">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Search</button>
+  </form>
 
+  <% if (results) { %>
+    <% results.forEach(beer => { %>
+      <div class="card" style="width: 18rem;">
+        <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= beer.name %> </h5>
+          <p class="card-text">first brewed: <%= beer.first_brewed %></p>
+          
+
+          <a href="/beers/<%= beer.id %>" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+    <% }) %>
+  <% } %> 
 
 
 

@@ -4,31 +4,32 @@ const axios = require('axios')
 
 module.exports = {
     new: newBeer,
-    index,
+    search,
     show,
     addToCollection,
     removeFromCollection,
+    index,
 }
 
 function newBeer(req, res) {
     res.render("beers/new", {
-        title: "Beer",
+        title: "Beer Search",
         user: req.user,
+        results: null,
     })
 }
 
-function index(req, res) {
-    axios.get(`https://api.punkapi.com/v2/beers/`)
-    .then((resp) => {
-        Beer.find({}, (err, beers) => {
-            // console.log(resp.data);
-            res.render('beers/index', {
-                title: "Beer Collections",
-                user: req.user,
-                beers: resp.data,
-            })
+function search(req, res) {
+    axios
+      .get(`https://api.punkapi.com/v2/beers?beer_name=${req.body.query}`)
+      .then((response) => {
+        console.log(response.data)
+        res.render("beers/new", {
+          title: "Beer Search",
+          user: req.user,
+          results: response.data
         })
-    })
+      })
 }
 
 function show(req, res) {
@@ -91,3 +92,13 @@ function removeFromCollection(req, res) {
     })
 }
 
+function index(req, res) {
+    Beer.find({favoritedBy: req.user._id})
+    .then((beers) => {
+        res.render('beers/index', {
+            title: "Beer Collection",
+            user: req.user,
+            beers
+        })
+    })
+}
