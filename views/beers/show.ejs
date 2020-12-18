@@ -12,13 +12,14 @@
           <% } else { %>
         <form action="/beers/<%= beer.id %>/collection" method="POST">
       <% } %>
-        <input type="text" hidden name="name" value="<%= beer.name %>">
-        <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
-        <input type="date" hidden name="released" value="<%= beer.first_brewed %>">
-        <input type="text" hidden name="imageUrl" value="<%= beer.image_url %>">
-        <input type="number" hidden name="id" value="<%= beer.id %>">
-        <button class="btn is-warning"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
-        </form>
+      <input type="text" hidden name="name" value="<%= beer.name %>">
+      <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
+      <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
+      <input type="text" hidden name="image_url" value="<%= beer.image_url %>">
+      <input type="number" hidden name="id" value="<%= beer.id %>">
+      
+      <button class=""><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
+    </form>
     
 
 <% }) %> 

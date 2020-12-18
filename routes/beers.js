@@ -2,7 +2,6 @@ const router = require('express').Router()
 const beersCtrl = require('../controllers/beers')
 
 router.get('/new', isLoggedIn, beersCtrl.new)
-// router.post('/', isLoggedIn, beersCtrl.create)
 router.get('/', isLoggedIn, beersCtrl.index)
 router.get('/:id', isLoggedIn, beersCtrl.show)
 router.post('/:id/collection', isLoggedIn, beersCtrl.addToCollection)

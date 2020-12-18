@@ -4,46 +4,16 @@ const axios = require('axios')
 
 module.exports = {
     new: newBeer,
-    // create,
     show,
-    index,
     addToCollection,
     removeFromCollection,
+    index,
 }
 
 function newBeer(req, res) {
     res.render("beers/new", {
         title: "Beer",
         user: req.user,
-
-    })
-}
-
-function create(req, res) {
-    Beer.create(req.body)
-    .then((beer) => {
-        console.log(beer)
-        res.render('/', {
-            user: req.user,
-            beer: beer,
-
-        })
-        
-    })
-}
-
-
-function index(req, res) {
-    axios.get(`https://api.punkapi.com/v2/beers/`)
-    .then((resp) => {
-        Beer.find({}, (err, beers) => {
-            // console.log(resp.data);
-            res.render('beers/index', {
-                title: "Beer Collections",
-                user: req.user,
-                beers: resp.data
-            })
-        })
     })
 }
 
@@ -105,4 +75,18 @@ function removeFromCollection(req, res) {
         res.redirect(`/beers/${req.body.id}`)
       })
     })
-  }
+}
+
+function index(req, res) {
+    axios.get(`https://api.punkapi.com/v2/beers/`)
+    .then((resp) => {
+        Beer.find({}, (err, beers) => {
+            // console.log(resp.data);
+            res.render('beers/index', {
+                title: "Beer Collections",
+                user: req.user,
+                beers: resp.data,
+            })
+        })
+    })
+}
