@@ -3,13 +3,26 @@
 
 <h1> <%= title %> </h1>
 
-<% beer.forEach(b => { %>
+<% beer.forEach(beer => { %>
     <div>
-        <img src="<%= b.image_url %>" class="" style="width: 10rem;" alt="...">
+        <img src="<%= beer.image_url %>" class="" style="width: 10rem;" alt="...">
     </div>
+    <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
+        <form action="/beers/<%= beer.id %>/collection?_method=DELETE" method="POST">
+          <% } else { %>
+        <form action="/beers/<%= beer.id %>/collection" method="POST">
+      <% } %>
+        <input type="text" hidden name="name" value="<%= beer.name %>">
+        <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
+        <input type="date" hidden name="released" value="<%= beer.first_brewed %>">
+        <input type="text" hidden name="imageUrl" value="<%= beer.image_url %>">
+        <input type="number" hidden name="id" value="<%= beer.id %>">
+        <button class="btn is-warning"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
+        </form>
     
 
 <% }) %> 
+
 
 
 

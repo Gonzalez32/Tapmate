@@ -4,8 +4,11 @@ const axios = require('axios')
 
 module.exports = {
     new: newBeer,
+    // create,
     show,
     index,
+    addToCollection,
+    removeFromCollection,
 }
 
 function newBeer(req, res) {
@@ -13,6 +16,19 @@ function newBeer(req, res) {
         title: "Beer",
         user: req.user,
 
+    })
+}
+
+function create(req, res) {
+    Beer.create(req.body)
+    .then((beer) => {
+        console.log(beer)
+        res.render('/', {
+            user: req.user,
+            beer: beer,
+
+        })
+        
     })
 }
 
@@ -44,7 +60,7 @@ function show(req, res) {
               user: req.user,
               beer: response.data,
               favoritedBy: beer.favoritedBy,
-              beerId: beer._id,
+              id: beer._id,
               reviews: beer.reviews
             }); 
           } else {
@@ -59,3 +75,34 @@ function show(req, res) {
         })
     });
 }
+
+function addToCollection(req, res) {
+    Beer.findOne({id: req.body.id})
+    .then((beer) => {
+        if(beer) {
+            beer.favoritedBy.push(req.user._id)
+            beer.save()
+            .then(() => {
+                res.redirect(`/beers/${req.body.id}`)
+            })
+        } else {
+            req.body.favoritedBy = req.user._id
+            Beer.create(req.body)
+            .then(() => {
+                res.redirect(`/beers/${req.body.id}`)
+            })
+        }
+    })
+}
+
+function removeFromCollection(req, res) {
+    Beer.findOne({ id: req.params.id })
+    .then((beer) => {
+      let idx = beer.favoritedBy.indexOf(req.user._id)
+      beer.favoritedBy.splice(idx, 1)
+      beer.save()
+      .then(() => {
+        res.redirect(`/beers/${req.body.id}`)
+      })
+    })
+  }
