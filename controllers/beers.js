@@ -43,16 +43,16 @@ function show(req, res) {
             res.render("beers/show", {
               title: "Beer Details",
               user: req.user,
-              beer: response.data,
+              beers: response.data,
               favoritedBy: beer.favoritedBy,
-              id: beer._id,
+              beerId: beer._id,
               reviews: beer.reviews
             }); 
           } else {
             res.render("beers/show", {
               title: "Beer Details",
               user: req.user,
-              beer: response.data,
+              beers: response.data,
               favoritedBy: [""],
               reviews: [""]
             }); 

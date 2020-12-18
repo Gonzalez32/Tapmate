@@ -18,9 +18,9 @@
         <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title"><%= beer.name %> </h5>
-          <p class="card-text">first brewed: <%= beer.first_brewed %></p>
+          <h5 class="card-title"><%= beer.tagline %> </h5>
+          <p class="card-text">First Brewed: <%= beer.first_brewed %></p>
           
-
           <a href="/beers/<%= beer.id %>" class="btn btn-primary">Details</a>
         </div>
       </div>
