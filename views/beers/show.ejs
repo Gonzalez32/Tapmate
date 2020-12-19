@@ -8,20 +8,25 @@
         <img src="<%= beer.image_url %>" class="" style="width: 10rem;" alt="..."><br>
         <label for="name"><%= beer.name %> </label><br>
         <label for="tagline"><%= beer.tagline %> </label><br>
-        <label for="first_brewed">First Brewed: <%= beer.first_brewed %> </label>
+        <label for="first brewed">First Brewed: <%= beer.first_brewed %> </label><br>
+        <label for="description">Description: <%= beer.description %> </label><br>
+        <label for="ingredients">Ingredients: <%= beer.ingredients.malt[0].name %> </label><br>
+        <label for="food pairing">Food Pairing: <%= beer.food_pairing %> </label><br>
+        <label for="brewers tips">Brewers Tips: <%= beer.brewers_tips %> </label>
     </div>
     
     <div>
-        
+        <% let total = 0 %>
         <% reviews.forEach(r => { %>
-  
-  <p><%= r.rating %> - <img width="20" id="avatarPhoto" src="<%= r.reviewerPhoto %>" alt=""> <%= r.reviewer %></p>
-  <p><%= r.content %></p>
+        <% total+= r.rating %>
+        <p><%= r.rating %> - <img width="20" id="avatarPhoto" src="<%= r.reviewerPhoto %>" alt=""> <%= r.reviewer %></p>
+        <p><%= r.content %></p>
     <% }) %>
+    <p>Beer Score: <%= (total / reviews.length).toFixed(2) %></p>
     <% if (!reviews.some(u => {return u.reviewer === user.name}) && favoritedBy.some(u => {return u.email === user.email})) { %>
     <form action="/beers/<%= beerId %>/reviews" method="POST">
-        <div class="">
-        <textarea class="form-control" name="content" style="width: 18rem;" id="exampleFormControlTextarea1" placeholder="Leave a Review" rows="3"></textarea>
+        <div class="group">
+            <textarea class="form-control" name="content" style="width: 18rem;" id="exampleFormControlTextarea1" placeholder="Leave a Review" rows="3"></textarea>
         </div>
         <div class="form">
         <label for="exampleFormControlSelect1">Rating</label>
@@ -39,7 +44,7 @@
     </form>
     <% } %>
     </div>
-    
+    <!-- Button to add/remove from collection -->
     <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
         <form action="/beers/<%= beer.id %>/collection?_method=DELETE" method="POST">
           <% } else { %>
@@ -49,12 +54,12 @@
       <input type="text" hidden name="name" value="<%= beer.name %>">
       <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
       <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
-      <input type="number" hidden name="id" value="<%= beer.id %>">
-      <button type="submit" class="btn btn-warning"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
+      <input type="text" hidden name="id" value="<%= beer.id %>">
+      <button class="btn btn-warning"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
     </form>
 <% }) %> 
 
-<a href="/beers/new">Go back</a>
+<a href="/beers">Go back</a>
 
 
 <%- include('../partials/footer')  %>

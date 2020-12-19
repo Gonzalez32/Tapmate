@@ -39,7 +39,7 @@ function show(req, res) {
         Beer.findOne({ id: response.data.id })
         .populate('favoritedBy')
         .then((beer) => {
-          if(beer) {
+          if (beer) {
             res.render("beers/show", {
               title: "Beer Details",
               user: req.user,
@@ -64,7 +64,7 @@ function show(req, res) {
 function addToCollection(req, res) {
     Beer.findOne({id: req.body.id})
     .then((beer) => {
-        if(beer) {
+        if (beer) {
             beer.favoritedBy.push(req.user._id)
             beer.save()
             .then(() => {

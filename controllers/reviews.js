@@ -10,7 +10,10 @@ function create(req, res) {
         beer.reviews.push(req.body)
         beer.save()
         .then(() => {
-            res.redirect(`/beers/${beer._id}`)
+            res.redirect(`/beers/${beer.id}`)
+        })
+        .catch((err) => {
+            console.log(err);
         })
     })
 }
