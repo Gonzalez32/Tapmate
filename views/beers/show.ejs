@@ -52,8 +52,9 @@
       <input type="number" hidden name="id" value="<%= beer.id %>">
       <button type="submit" class="btn btn-warning"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
     </form>
-
 <% }) %> 
+
+<a href="/beers/new">Go back</a>
 
 
 <%- include('../partials/footer')  %>
