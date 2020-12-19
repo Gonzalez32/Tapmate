@@ -4,7 +4,7 @@
 <h3>Message Board</h3>
 <form action="/messages" method="POST">
   <div class="form-group">
-    <input type="text" class="form-control" aria-describedby="message" name="title" placeholder="Enter message...">
+    <input type="text" class="form-control" aria-describedby="message" name="title" placeholder="Enter Post" required>
   </div>
   <button type="submit" class="btn btn-success">Create Post</button>
 </form>
@@ -18,6 +18,11 @@
       <h5 class="card-title"><%= message.title %></h5>
       <h6><%= message.createdAt.toLocaleString()%></h6>
       <a href="/messages/<%= message._id %>" class="btn btn-primary">See Post</a>
+      <% if (user.name === message.postedBy){ %>
+        <form action="/messages/<%= message._id%>?_method=DELETE" class='delete-form' method="POST">
+            <button type='submit'>X</button>
+        </form>
+      <% } %> 
     </div>
   </div>
 <% }) %>

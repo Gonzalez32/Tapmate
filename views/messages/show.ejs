@@ -11,9 +11,10 @@
 
 <form action="/messages/<%= message._id %>" method="POST">
   <div class="form-group">
-    <input type="text" class="form-control" aria-describedby="message" name="message" placeholder="Enter reply...">
+    <input type="text" class="form-control" aria-describedby="message" name="message" placeholder="Enter reply..." required>
   </div>
   <button type="submit" class="btn btn-primary">Reply</button>
 </form>
+<a href="/messages">Go back</a>
 
 <%- include('../partials/footer') %>

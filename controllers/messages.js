@@ -5,7 +5,8 @@ module.exports = {
   create,
   show,
   reply,
-
+  delete: deletePost,
+  deleteReply
 }
 
 function index(req, res) {
@@ -47,4 +48,24 @@ function reply(req, res) {
         res.redirect(`/messages/${req.params.id}`);
       });
     });
+}
+
+function deletePost(req, res) {
+    Message.findByIdAndDelete(req.params.id)
+    .then(() => {
+        res.redirect('/messages')
+    })
+}
+
+function deleteReply(req, res){
+    console.log(req.params)
+    Message.findById(req.params.messageId)
+    .then((message) => {
+        const idx = message.replies.findIndex(reply => reply._id == req.params.replyId)
+        message.replies.splice(idx, 1)
+        message.save()
+        .then(()=> {
+            res.redirect(`/messages/${message._id}`)
+        })
+    })
 }

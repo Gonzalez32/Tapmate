@@ -3,8 +3,10 @@ const messagesCtrl = require('../controllers/messages')
 
 router.get('/', isLoggedIn, messagesCtrl.index)
 router.post('/', isLoggedIn, messagesCtrl.create)
-router.get("/:id", isLoggedIn, messagesCtrl.show);
-router.post("/:id", isLoggedIn, messagesCtrl.reply);
+router.get("/:id", isLoggedIn, messagesCtrl.show)
+router.post("/:id", isLoggedIn, messagesCtrl.reply)
+router.delete('/:id', isLoggedIn, messagesCtrl.delete)
+router.delete('/:messageId/:replyId', isLoggedIn, messagesCtrl.deleteReply)
 
 
 function isLoggedIn(req, res, next) {
