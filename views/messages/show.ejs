@@ -7,6 +7,11 @@
 
 <% message.replies.forEach(reply => { %>
     <h6><%= reply.message %> - <%= reply.postedBy %> <img id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
+    <% if (user.name === reply.postedBy){ %>
+        <form action="/messages/<%= message._id %>/<%= reply._id%>?_method=DELETE" class='delete-form' method="POST">
+            <button type='submit'>Delete Post</button>
+        </form>
+      <% } %> 
 <% }) %>
 
 <form action="/messages/<%= message._id %>" method="POST">
