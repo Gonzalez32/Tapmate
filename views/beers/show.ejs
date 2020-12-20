@@ -1,65 +1,61 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav')  %>
 
-<h1> <%= title %> </h1>
+<h1 class="title is-1"> <%= title %> </h1>
 
 <% beers.forEach(beer => { %>
-    <div class="card">
-        <img src="<%= beer.image_url %>" class="" style="width: 10rem;" alt="..."><br>
-        <label for="name"><%= beer.name %> </label><br>
-        <label for="tagline"><%= beer.tagline %> </label><br>
-        <label for="first brewed">First Brewed: <%= beer.first_brewed %> </label><br>
-        <label for="description">Description: <%= beer.description %> </label><br>
-        <label for="ingredients">Ingredients: <%= beer.ingredients.malt[0].name %> </label><br>
-        <label for="food pairing">Food Pairing: <%= beer.food_pairing %> </label><br>
-        <label for="brewers tips">Brewers Tips: <%= beer.brewers_tips %> </label>
-    </div>
-    
-    <div>
-        <% let total = 0 %>
-        <% reviews.forEach(r => { %>
-        <% total+= r.rating %>
-        <p><%= r.rating %> - <img width="20" id="avatarPhoto" src="<%= r.reviewerPhoto %>" alt=""> <%= r.reviewer %></p>
-        <p><%= r.content %></p>
-    <% }) %>
-    <p>Beer Score: <%= (total / reviews.length).toFixed(2) %></p>
-    <% if (!reviews.some(u => {return u.reviewer === user.name}) && favoritedBy.some(u => {return u.email === user.email})) { %>
-    <form action="/beers/<%= beerId %>/reviews" method="POST">
-        <div class="group">
-            <textarea class="form-control" name="content" style="width: 18rem;" id="exampleFormControlTextarea1" placeholder="Leave a Review" rows="3"></textarea>
+<div id="beer-details" class="tile is-ancestor">
+    <div class="tile is-vertical is-12">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-warning">
+            <p class="title"><%= beer.name %> </p>
+            <p class="subtitle"><%= beer.tagline %></p>
+            <p>First Brewed: <%= beer.first_brewed %></p><br>
+            <p>Description: <%= beer.description %></p><br>
+            <p>Ingredients: <%= beer.ingredients.malt[0].name %></p>
+          </article>
+          <article class="tile is-child notification is-warning">
+            <p class="title">Food Pairing</p>
+            <p class="subtitle">Brewers Tips</p>
+            <p>Food Pairing: <%= beer.food_pairing %></p><br>
+            <p>Brewers Tips: <%= beer.brewers_tips %></p>
+          </article>
         </div>
-        <div class="form">
-        <label for="exampleFormControlSelect1">Rating</label>
-        <select style="width: 18rem;" class="form-control" name="rating" id="exampleFormControlSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-info">
+            <p class="title"><%= beer.name %></p>
+            <figure class="image is-4by3">
+                <img src="<%= beer.image_url %>" class="" style="width: auto;" alt="..."><br>
+            </figure>
+          </article>
         </div>
-        <input type="text" hidden name="reviewer" value="<%= user.name %>">
-        <input type="text" hidden name="reviewerPhoto" value="<%= user.avatar %>"> 
-        <button class="btn btn-info">Submit</button>
-    </form>
-    <% } %>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-danger">
+          <p class="title">Add To Collection</p>
+          <p class="subtitle"></p>
+          <div class="content">
+            <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
+                <form action="/beers/<%= beer.id %>/collection?_method=DELETE" method="POST">
+                  <% } else { %>
+                <form action="/beers/<%= beer.id %>/collection" method="POST">
+              <% } %>
+              <input type="text" hidden name="image_url" value="<%= beer.image_url %>">
+              <input type="text" hidden name="name" value="<%= beer.name %>">
+              <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
+              <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
+              <input type="number" hidden name="id" value="<%= beer.id %>">
+              <button class="button is-warning is-outlined is-rounded"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
+            </form>
+          </div>
+        </article>
+      </div>
     </div>
-    <!-- Button to add/remove from collection -->
-    <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
-        <form action="/beers/<%= beer.id %>/collection?_method=DELETE" method="POST">
-          <% } else { %>
-        <form action="/beers/<%= beer.id %>/collection" method="POST">
-      <% } %>
-      <input type="text" hidden name="image_url" value="<%= beer.image_url %>">
-      <input type="text" hidden name="name" value="<%= beer.name %>">
-      <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
-      <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
-      <input type="text" hidden name="id" value="<%= beer.id %>">
-      <button class="btn btn-warning"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
-    </form>
-<% }) %> 
+  </div>
+<% }) %>
 
-<a href="/beers">Go back</a>
-
+<a class="button is-info is-outlined is-rounded" href="/beers">Back To Collection</a><br>
+<a class="button is-info is-outlined is-rounded" href="/beers/new">Back To Search</a>
 
 <%- include('../partials/footer')  %>

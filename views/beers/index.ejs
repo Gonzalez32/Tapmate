@@ -1,20 +1,16 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav')  %>
 
-<h3>Beer Collection</h3>
+<h1 class="title is-1 has-text-centered" ><%= title %> </h1>
+<% beers.forEach((beer) => { %>
+  <div class="container is-fullhd has-text-centered">
+    <div class="notification is-warning">
+      <img src="<%= beer.image_url %>" class="card-img-top" alt="..." width="30rem" >
+      <tr class=""> Beer Name: <%= beer.name %></tr><br>
+      <tr class=""> Tagline: <%= beer.tagline %></tr><br>  
+      <a class="button is-dark is-outlined is-rounded" href="/beers/<%= beer.id %>">Beer Details</a>
+    </div>
+  </div><br>
+<% }) %>
 
-
-    <% beers.forEach((beer) => { %>
-      <div class="table is-bordered">
-        <table class="" >
-          <!-- <img src="<%= beer.image_url %>" class="card-img-top" alt="..."> -->
-              <tr class=""> Beer Name: <%= beer.name %></tr><br>
-              <tr class=""> Tagline: <%= beer.tagline %></tr><br>
-              <!-- <h6 class="">Released: <%= beer.first_brewed %></h6><br> -->
-              <a href="/beers/<%= beer.id %>">Beer Details</a>
-        </table>
-      </div>
-    <% }) %>
-
-    
 <%- include('../partials/footer') %>
