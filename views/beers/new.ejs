@@ -1,33 +1,62 @@
 <%- include('../partials/header') %> 
 <%- include('../partials/nav') %> 
 
-<h1><%= title %> </h1>
-
-<form action="/beers/search" method="POST">
-    <div class="form-row">
-      <div class="col-md-4">
-        <input type="text" class="form-control" name="query" placeholder="Search for Beer" required>
+<section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+            <%= title %>
+        </h1>
+        <form action="/beers/search" method="POST">
+            <div class="form-row">
+              <div class="col-md-4">
+                <input type="text" class="input is-rounded" name="query" placeholder="Search for Beer..." required>
+              </div>
+            </div><br>
+            <button type="submit" class="button is-success is-outlined is-rounded">Search</button>
+        </form>
       </div>
     </div>
-    <button type="submit" class="btn btn-success">Search</button>
-  </form>
+</section>
 
-  <% if (results) { %>
-    <% results.forEach(beer => { %>
-      <div class="card" style="width: 10rem;">
-        <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%= beer.name %> </h5>
-          <h5 class="card-title"><%= beer.tagline %> </h5>
-          <p class="card-text">First Brewed: <%= beer.first_brewed %></p>
-          
-          <a href="/beers/<%= beer.id %>" class="btn btn-primary">Details</a>
+<div class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">John Smith</p>
+          <p class="subtitle is-6">@johnsmith</p>
         </div>
       </div>
-    <% }) %>
-  <% } %> 
+  
+      <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+        <a href="#">#css</a> <a href="#">#responsive</a>
+        <br>
+        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+      </div>
+    </div>
+</div>
 
-
-
+<div id="beer list">
+    <% if (results) { %>
+        <% results.forEach(beer => { %>
+            <div class="card-image" style="width: 8rem;">
+                <img src="<%= beer.image_url %>" class="card-img-top" alt="...">
+            <div class="card">
+                    <h5 class="card-title"><%= beer.name %> </h5>
+                    <h5 class="card-title"><%= beer.tagline %> </h5>
+                    <p class="card-text">First Brewed: <%= beer.first_brewed %></p>
+                    <a href="/beers/<%= beer.id %>" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+      <% }) %>
+    <% } %> 
+</div>
 
 <%- include('../partials/footer') %> 
