@@ -1,13 +1,13 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %> 
 
-<h1 id="homepage" class="title is-1">Tapmate</h1>
-<h2 class="title is-2">Welcome, <%= user ? user.name : "Friend" %></h2>
-
-
-
-
-
-
+<section class="hero is-warning is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <h1 id="homepage" class="title is-1">Tapmate</h1>
+        <h2 class="title is-2">Welcome, <%= user ? user.name : "Friend" %> 🍺</h2>
+      </div>
+    </div>
+</section>
 
 <%- include('partials/footer') %>
