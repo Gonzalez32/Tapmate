@@ -1,17 +1,20 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %> 
 
-<h3>User Lists</h3>
+<br><div class="container is-fullhd">
+  <div class="notification is-warning">
+    <h1 class="title is-1">User Lists</h1>
 
-<% users.forEach(u => { %>
-  <a href="/users/<%= u._id %>">
-    <div class="card">
-      <div class="card-body">
-        <img height="50" id="avatarPhoto" src="<%= u.avatar ? u.avatar : 'http://theoldreader.com/kittens/300/300/' %>" alt=""> 
-        <%= u.name %></a> - Joined on <%= u.createdAt.toLocaleString().split(',')[0] %>
-      </div>
-    </div><br>
-<% }) %>
-
+    <% users.forEach(u => { %>
+      <a href="/users/<%= u._id %>">
+        <div class="">
+          <figure class="image is-128x128">
+            <img class="is-rounded" src="<%= u.avatar ? u.avatar : 'http://theoldreader.com/kittens/300/300/' %>" alt="avatar-img"> 
+          </figure>
+            <%= u.name %></a> - Joined on <%= u.createdAt.toLocaleString().split(',')[0] %>
+        </div><br>
+    <% }) %>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

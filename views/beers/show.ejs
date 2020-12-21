@@ -33,7 +33,7 @@
       </div>
       <div class="tile is-parent">
         <article class="tile is-child notification is-danger">
-          <p class="title">Add To Collection</p>
+          <p class="title">Click away</p>
           <p class="subtitle"></p>
           <div class="content">
             <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
@@ -47,6 +47,8 @@
               <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
               <input type="number" hidden name="id" value="<%= beer.id %>">
               <button class="button is-warning is-outlined is-rounded"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
+              <a class="button is-warning is-outlined is-rounded" href="/beers">Back To Collection</a>
+              <a class="button is-warning is-outlined is-rounded" href="/beers/new">Back To Search</a>
             </form>
           </div>
         </article>
@@ -55,7 +57,6 @@
   </div>
 <% }) %>
 
-<a class="button is-info is-outlined is-rounded" href="/beers">Back To Collection</a><br>
-<a class="button is-info is-outlined is-rounded" href="/beers/new">Back To Search</a>
+
 
 <%- include('../partials/footer')  %>

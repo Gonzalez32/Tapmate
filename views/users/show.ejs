@@ -1,43 +1,38 @@
 <%- include('../partials/header') %>
   <%- include('../partials/nav') %>
 
-    <h3>
-      <%= title %>
-    </h3>
-
-    <div class="card" style="width: 16rem;">
-      <!-- If our user doesn't have an avatar image, let's use a silly cat picture! -->
-      <img id="avatarPhoto" style="height: 18rem;" class="card-img-top"
-        src="<%= userInfo.avatar ? userInfo.avatar : 'http://theoldreader.com/kittens/300/300/'  %>"
-        alt="Card image cap">
-      <div class="card-header">
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">
-          <%= userInfo.name %>
-        </h5>
-        <!-- Let's clean up the date data to show the day the user joined -->
-        <p class="card-text">Joined: <%= userInfo.createdAt.toLocaleString().split(',')[0] %>
+<br><div class="container is-max-desktop">
+  <div class="notification is-warning">
+    <h1 class="title is-1"><%= title %> </h1>
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-128x128">
+          <img id="avatarPhoto" class="is-rounded" src="<%= userInfo.avatar ? userInfo.avatar : 'http://theoldreader.com/kittens/300/300/'  %>" alt="Card image cap">
         </p>
-        <p class="card-text">Email: <a href="mailto:<%= userInfo.email %>">
-            <%= userInfo.email %>
-          </a></p>
-        <p class="card-text">Favorite beers:</p>
-        <!-- This is where we'll iterate over the beers with a forEach -->
-        <% beers.forEach(beer=> { %>
-          <a href="/beers/<%= beer.id %> ">
-            <%= beer.name %>
-          </a><br>
-        <% }) %><br>
-            <!-- This is where we'll render buttons to add/remove a user as a friend -->
-        <% if (!userInfo._id.equals(user._id) && !user.friends.includes(userInfo._id)) { %>
-              <a href="/users/<%= userInfo._id %>/friend" class="btn btn-primary">Add Friend</a>
-        <% } %>
-        
-        <% if (!userInfo._id.equals(user._id) && user.friends.includes(userInfo._id)) { %>
-          <a href="/users/<%= userInfo._id %>/unfriend" class="btn btn-primary">Remove Friend</a>
-        <% } %>
-      </div>
-    </div>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><%= userInfo.name %></strong> <small><a href="mailto:<%= userInfo.email %>"><%= userInfo.email %></small></a> <small>Joined: <%= userInfo.createdAt.toLocaleString().split(',')[0] %></small>
+            <br>
+            <h6 class="title is-6">Favorite Beers:</h6>
+            <% beers.forEach(beer=> { %>
+              <a href="/beers/<%= beer.id %> ">
+                <%= beer.name %>
+              </a><br>
+            <% }) %><br>
+                <!-- This is where we'll render buttons to add/remove a user as a friend -->
+            <% if (!userInfo._id.equals(user._id) && !user.friends.includes(userInfo._id)) { %>
+                  <a href="/users/<%= userInfo._id %>/friend" class="btn btn-primary">Add Friend</a>
+            <% } %>
+            
+            <% if (!userInfo._id.equals(user._id) && user.friends.includes(userInfo._id)) { %>
+              <a href="/users/<%= userInfo._id %>/unfriend" class="btn btn-primary">Remove Friend</a>
+            <% } %>
+          </p>
+        </div>
+    </article>
+  </div>
+</div>
 
 <%- include('../partials/footer') %>

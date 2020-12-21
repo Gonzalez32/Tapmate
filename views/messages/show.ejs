@@ -12,19 +12,19 @@
             <input type="text" class="input is-rounded" aria-describedby="message" name="message" placeholder="Enter reply..." required>
           </div><br>
           <button type="submit" class="button is-success is-outlined is-rounded">Reply</button>
-        </form>
+        </form><br>
         <article class="media">
             <div class="media-right">
             <% message.replies.forEach(reply => { %>
-                <h6><%= reply.message %> - <%= reply.postedBy %> <img id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
+                <h6 class="title is-6"><%= reply.message %> - <%= reply.postedBy %> <img class="is-rounded" id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
                 <% if (user.name === reply.postedBy){ %>
                         <form action="/messages/<%= message._id %>/<%= reply._id%>?_method=DELETE" class='delete-form' method="POST">
                             <button class="delete"></button>
-                        </form>
+                        </form><br>
                     <% } %> 
                 <% }) %>
             </div>
-        </article>
+        </article><br><br>
         <a href="/messages">Go back</a>
     </div>
 </div>
