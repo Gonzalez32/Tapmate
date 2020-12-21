@@ -1,25 +1,32 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<h3>Message Details</h3>
-<h4><%= message.title %></h4>
-<h5>Posted on <%= message.createdAt.toLocaleString() %> - <%= message.postedBy %> <img id="avatarPhoto" width="30" src="<%= message.avatar %>" alt=""></h5>
-
-<% message.replies.forEach(reply => { %>
-    <h6><%= reply.message %> - <%= reply.postedBy %> <img id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
-    <% if (user.name === reply.postedBy){ %>
-        <form action="/messages/<%= message._id %>/<%= reply._id%>?_method=DELETE" class='delete-form' method="POST">
-            <button type='submit'>Delete Post</button>
+<br><div class="container is-fullhd">
+    <div class="notification is-warning">
+        <h3 class="title is-3">Message Details</h3>
+        <h1 class="title is-1"><%= message.title %></h1>
+        <h5 class="title is-5">Posted on <%= message.createdAt.toLocaleString() %> - <%= message.postedBy %> <img id="avatarPhoto" width="30" src="<%= message.avatar %>" alt=""></h5>
+        
+        <form action="/messages/<%= message._id %>" method="POST">
+          <div class="form-group">
+            <input type="text" class="input is-rounded" aria-describedby="message" name="message" placeholder="Enter reply..." required>
+          </div><br>
+          <button type="submit" class="button is-success is-outlined is-rounded">Reply</button>
         </form>
-      <% } %> 
-<% }) %>
-
-<form action="/messages/<%= message._id %>" method="POST">
-  <div class="form-group">
-    <input type="text" class="form-control" aria-describedby="message" name="message" placeholder="Enter reply..." required>
-  </div>
-  <button type="submit" class="btn btn-primary">Reply</button>
-</form>
-<a href="/messages">Go back</a>
+        <article class="media">
+            <div class="media-right">
+            <% message.replies.forEach(reply => { %>
+                <h6><%= reply.message %> - <%= reply.postedBy %> <img id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
+                <% if (user.name === reply.postedBy){ %>
+                        <form action="/messages/<%= message._id %>/<%= reply._id%>?_method=DELETE" class='delete-form' method="POST">
+                            <button class="delete"></button>
+                        </form>
+                    <% } %> 
+                <% }) %>
+            </div>
+        </article>
+        <a href="/messages">Go back</a>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

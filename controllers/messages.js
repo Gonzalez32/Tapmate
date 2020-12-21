@@ -58,7 +58,6 @@ function deletePost(req, res) {
 }
 
 function deleteReply(req, res){
-    console.log(req.params)
     Message.findById(req.params.messageId)
     .then((message) => {
         const idx = message.replies.findIndex(reply => reply._id == req.params.replyId)
