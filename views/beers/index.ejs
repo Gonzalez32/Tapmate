@@ -1,16 +1,39 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav')  %>
 
-<h1 class="title is-1 has-text-centered" ><%= title %> </h1>
-<% beers.forEach((beer) => { %>
-  <div class="container is-fullhd has-text-centered">
-    <div class="notification is-warning">
-      <img src="<%= beer.image_url %>" class="card-img-top" alt="..." width="30rem" >
-      <tr class=""> Beer Name: <%= beer.name %></tr><br>
-      <tr class=""> Tagline: <%= beer.tagline %></tr><br>  
-      <a class="button is-dark is-outlined is-rounded" href="/beers/<%= beer.id %>">Beer Details</a>
-    </div>
-  </div><br>
-<% }) %>
+<section class="hero is-warning is-fullheight">
+  <div class="container is-max-desktop">
+    <h1 
+      class="title is-1 has-text-centered" ><%= title %> 
+    </h1><br>
+
+    <% beers.forEach((beer) => { %>
+        <div class="card has-text-centered">
+          <div class="card-image">
+              <div class="card-content has-background-dark">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img src="<%= beer.image_url %>" alt="Placeholder image">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                      <p class="title is-4 has-text-white"><%= beer.name %></p>
+                      <p class="subtitle is-6 has-text-white"><%= beer.tagline %></p>
+                  </div>
+                </div><br><br><br>
+            
+                <div class="content">
+                  <!-- <a href="#">#css</a> <a href="#">#responsive</a>
+                  <br>
+                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time> -->
+                  <a class="button is-warning is-outlined is-rounded" href="/beers/<%= beer.id %>">Details</a>
+                </div>
+              </div>
+          </div>
+        </div><br><br>
+    <% }) %>
+  </div>
+</section>
 
 <%- include('../partials/footer') %>
