@@ -1,7 +1,7 @@
 <%- include('../partials/header') %> 
 <%- include('../partials/nav') %> 
 
-<section class="hero is-warning">
+<section class="hero is-warning is-fullheight">
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
@@ -10,7 +10,7 @@
         <form action="/beers/search" method="POST">
             <div class="form-row">
               <div class="col-md-4">
-                <input type="text" class="input is-rounded" name="query" placeholder="Search for Beer..." required>
+                <input type="text" class="input is-rounded" name="query" placeholder="Go Search..." required>
               </div>
             </div><br>
             <button type="submit" class="button is-success is-outlined is-rounded">Search</button>
