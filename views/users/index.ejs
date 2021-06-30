@@ -1,21 +1,27 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %> 
 
-<br><div class="container is-fullhd">
-  <div class="notification is-warning">
-    <h1 class="title is-1">User Lists</h1>
+<section class="hero is-warning is-fullheight">
 
-    <% users.forEach(u => { %>
-      <a href="/users/<%= u._id %>">
-        <div class="">
-          <figure class="image is-128x128">
-            <img class="is-rounded" src="<%= u.avatar ? u.avatar : 'http://theoldreader.com/kittens/300/300/' %>" alt="avatar-img"> 
-          </figure>
-            <%= u.name %></a> - Joined on <%= u.createdAt.toLocaleString().split(',')[0] %>
-        </div><br>
-    <% }) %>
-  </div>
-</div>
+  <br><h1 class="title is-1 has-text-centered">
+    User Lists
+  </h1>
 
+  <br><div class="container is-fullhd">
+    <div class="notification is-dark">
+
+      <% users.forEach(u => { %>
+        <a href="/users/<%= u._id %>">
+          <div class="">
+            <figure class="image is-128x128">
+              <img class="is-rounded" src="<%= u.avatar ? u.avatar : 'http://theoldreader.com/kittens/300/300/' %>" alt="avatar-img"> 
+            </figure>
+              <%= u.name %></a> - Joined on <%= u.createdAt.toLocaleString().split(',')[0] %>
+          </div><br>
+      <% }) %>
+    </div>
+  </div><br><br><br>
+
+</section>
 
 <%- include('../partials/footer') %>
