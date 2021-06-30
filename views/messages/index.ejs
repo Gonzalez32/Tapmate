@@ -1,44 +1,48 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav')  %> 
 
-<br><div class="container is-fullhd">
-    <div class="notification is-warning">
-      <h1 class="title is-1">Message Board</h1>
+<section class="hero is-warning is-fullheight">
+
+  <br><h1 class="title is-1 has-text-centered">Message Board</h1><br>
+
+  <div class="container is-max-desktop">
+    <div class="notification is-dark">
 
       <form action="/messages" method="POST">
-        <div class="form-group">
-          <input type="text" class="input is-rounded" aria-describedby="message" name="title" placeholder="Enter Post..." required>
+        <br><div class="form-group">
+          <input type="text" class="input is-rounded" aria-describedby="message" name="title" placeholder="Enter Message..." required>
         </div><br>
-        <button type="submit" class="button is-success is-rounded is-outlined">Create Post</button>
-      </form><br>
+        <button type="submit" class="button is-success is-rounded is-outlined">Post Message</button>
+      </form><br><br>
 
-      <% messages.forEach(message => { %>
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-             <img class="is-rounded" id="avatarPhoto" width="30" src="<%= message.avatar %>" alt="">
-          </p>
-        </figure>
-        <div class="media-content">
-            <div class="content">
-                <p>
-                    <strong><%= message.postedBy %></strong> <small><%= message.createdAt.toLocaleString()%></small>
-                    <br>
-                    <%= message.title %>
-                </p>
-            </div>
-            <a href="/messages/<%= message._id %>" class="button is-dark is-rounded is-outlined">See Post</a>
-        </div>
-        <div class="media-right">
-            <% if (user.name === message.postedBy){ %>
-                <form action="/messages/<%= message._id%>?_method=DELETE" class='' method="POST">
-                    <button class="delete"></button>
-                </form>
-            <% } %> 
-        </div>
-      </article>
+        <% messages.forEach(message => { %>
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img class="is-rounded" id="avatarPhoto" width="30" src="<%= message.avatar %>" alt="">
+            </p>
+          </figure>
+          <div class="media-content">
+              <div class="content">
+                  <p>
+                      <strong><%= message.postedBy %></strong> <small><%= message.createdAt.toLocaleString()%></small>
+                      <br>
+                      <%= message.title %>
+                  </p>
+              </div>
+              <a href="/messages/<%= message._id %>" class="button is-warning is-rounded is-outlined">See Message</a>
+          </div>
+          <div class="media-right">
+              <% if (user.name === message.postedBy){ %>
+                  <form action="/messages/<%= message._id%>?_method=DELETE" class='' method="POST">
+                      <button class="delete"></button>
+                  </form>
+              <% } %> 
+          </div>
+        </article>
       <% }) %>
     </div>
   </div>
+</section>
  
 <%- include('../partials/footer') %>
