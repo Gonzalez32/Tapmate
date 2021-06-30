@@ -1,62 +1,62 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav')  %>
 
-<h1 class="title is-1"> <%= title %> </h1>
+<section class="hero is-warning is-fullheight">
+  <br><h1 class="title is-1"> <%= title %> </h1><br>
 
-<% beers.forEach(beer => { %>
-<div id="beer-details" class="tile is-ancestor">
-    <div class="tile is-vertical is-12">
-      <div class="tile">
-        <div class="tile is-parent is-vertical">
-          <article class="tile is-child notification is-warning">
-            <p class="title"><%= beer.name %> </p>
-            <p class="subtitle"><%= beer.tagline %></p>
-            <p>First Brewed: <%= beer.first_brewed %></p><br>
-            <p>Description: <%= beer.description %></p><br>
-            <p>Ingredients: <%= beer.ingredients.malt[0].name %></p>
-          </article>
-          <article class="tile is-child notification is-warning">
-            <p class="title">Food Pairing</p>
-            <p class="subtitle">Brewers Tips</p>
-            <p>Food Pairing: <%= beer.food_pairing %></p><br>
-            <p>Brewers Tips: <%= beer.brewers_tips %></p>
-          </article>
+  <% beers.forEach(beer => { %>
+  <div id="beer-details" class="tile is-ancestor">
+      <div class="tile is-vertical is-12">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-dark">
+              <p class="title has-text-white"><%= beer.name %> </p>
+              <p class="subtitle has-text-white"><%= beer.tagline %></p>
+              <p>First Brewed: <%= beer.first_brewed %></p><br>
+              <p>Description: <%= beer.description %></p><br>
+              <p>Ingredients: <%= beer.ingredients.malt[0].name %></p>
+            </article>
+            <article class="tile is-child notification is-dark">
+              <p class="title has-text-white">Food Pairing</p>
+              <p class="subtitle has-text-white">Brewers Tips</p>
+              <p>Food Pairing: <%= beer.food_pairing %></p><br>
+              <p>Brewers Tips: <%= beer.brewers_tips %></p>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-info">
+              <p class="title"><%= beer.name %></p>
+              <figure class="image is-4by3">
+                  <img src="<%= beer.image_url %>" class="" style="width: auto;" alt="..."><br>
+              </figure>
+            </article>
+          </div>
         </div>
         <div class="tile is-parent">
-          <article class="tile is-child notification is-info">
-            <p class="title"><%= beer.name %></p>
-            <figure class="image is-4by3">
-                <img src="<%= beer.image_url %>" class="" style="width: auto;" alt="..."><br>
-            </figure>
+          <article class="tile is-child notification is-dark">
+            <p class="title has-text-white">Tapmate</p><br>
+            <p class="subtitle has-text-white">Click Here</p>
+            <div class="content">
+              <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
+                  <form action="/beers/<%= beer.id %>/collection?_method=DELETE" method="POST">
+                    <% } else { %>
+                  <form action="/beers/<%= beer.id %>/collection" method="POST">
+                <% } %>
+                <input type="text" hidden name="image_url" value="<%= beer.image_url %>">
+                <input type="text" hidden name="name" value="<%= beer.name %>">
+                <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
+                <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
+                <input type="number" hidden name="id" value="<%= beer.id %>">
+                <button class="button is-warning is-outlined is-rounded"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
+                <a class="button is-warning is-outlined is-rounded" href="/beers">Back To Collection</a>
+                <!-- <a class="button is-warning is-outlined is-rounded" href="/beers/new">Back To Search</a> -->
+              </form>
+            </div>
           </article>
         </div>
       </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-danger">
-          <p class="title">Click away</p>
-          <p class="subtitle"></p>
-          <div class="content">
-            <% if (favoritedBy.some(u => {return u.email === user.email})) { %>
-                <form action="/beers/<%= beer.id %>/collection?_method=DELETE" method="POST">
-                  <% } else { %>
-                <form action="/beers/<%= beer.id %>/collection" method="POST">
-              <% } %>
-              <input type="text" hidden name="image_url" value="<%= beer.image_url %>">
-              <input type="text" hidden name="name" value="<%= beer.name %>">
-              <input type="text" hidden name="tagline" value="<%= beer.tagline %>">
-              <input type="date" hidden name="first_brewed" value="<%= beer.first_brewed %>">
-              <input type="number" hidden name="id" value="<%= beer.id %>">
-              <button class="button is-warning is-outlined is-rounded"><%= favoritedBy.some(u => {return u.email === user.email}) ? "Remove from Collection" : "Add to Collection" %></button>
-              <a class="button is-warning is-outlined is-rounded" href="/beers">Back To Collection</a>
-              <a class="button is-warning is-outlined is-rounded" href="/beers/new">Back To Search</a>
-            </form>
-          </div>
-        </article>
-      </div>
     </div>
-  </div>
-<% }) %>
-
-
+  <% }) %>
+</section>
 
 <%- include('../partials/footer')  %>
