@@ -1,32 +1,52 @@
 <%- include('../partials/header') %>
 <%- include('../partials/nav') %>
 
-<br><div class="container is-fullhd">
-    <div class="notification is-warning">
-        <h3 class="title is-3">Message Details</h3>
-        <h1 class="title is-1"><%= message.title %></h1>
-        <h5 class="title is-5">Posted on <%= message.createdAt.toLocaleString() %> - <%= message.postedBy %> <img id="avatarPhoto" width="30" src="<%= message.avatar %>" alt=""></h5>
-        
-        <form action="/messages/<%= message._id %>" method="POST">
-          <div class="form-group">
-            <input type="text" class="input is-rounded" aria-describedby="message" name="message" placeholder="Enter reply..." required>
-          </div><br>
-          <button type="submit" class="button is-success is-outlined is-rounded">Reply</button>
-        </form><br>
-        <article class="media">
-            <div class="media-right">
+<section class="hero is-warning is-fullheight">
+
+    <br><h1 class="title is-1 has-text-centered">
+        Message Details
+    </h1><br>
+
+    <br><div class="container is-fullhd">
+        <div class="notification is-dark">
+            <h1 class="title is-1 has-text-white"><%= message.title %></h1>
+            <h5 class="title is-5 has-text-white">Posted on <%= message.createdAt.toLocaleString() %> - <%= message.postedBy %> <img id="avatarPhoto" width="30" src="<%= message.avatar %>" alt=""></h5>
+            
+            <form action="/messages/<%= message._id %>" method="POST">
+            <div class="form-group">
+                <input type="text" class="input is-rounded" aria-describedby="message" name="message" placeholder="Enter Reply..." required>
+            </div><br>
+            <button type="submit" class="button is-info is-outlined is-rounded">Reply</button>
+            </form><br>
+            <!-- <article class="media">
+                <div class="media-right">
+                <% message.replies.forEach(reply => { %>
+                    
+                    <h6 class="title is-6 has-text-info"><%= reply.message %> - <%= reply.postedBy %> <img class="is-rounded" id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
+                    <% if (user.name === reply.postedBy){ %>
+                            <form action="/messages/<%= message._id %>/<%= reply._id%>?_method=DELETE" class='delete-form' method="POST">
+                                <button class="delete"></button>
+                            </form><br>
+                        <% } %> 
+                    <% }) %>
+                </div>
+            </article><br><br> -->
             <% message.replies.forEach(reply => { %>
-                <h6 class="title is-6"><%= reply.message %> - <%= reply.postedBy %> <img class="is-rounded" id="avatarPhoto" width="25" src="<%= reply.avatar %>" alt=""></h6>
-                <% if (user.name === reply.postedBy){ %>
-                        <form action="/messages/<%= message._id %>/<%= reply._id%>?_method=DELETE" class='delete-form' method="POST">
-                            <button class="delete"></button>
-                        </form><br>
-                    <% } %> 
-                <% }) %>
-            </div>
-        </article><br><br>
-        <a href="/messages">Go back</a>
-    </div>
-</div>
+                <article class="message is-info">
+                    <div class="message-header">
+                    <p><%= reply.postedBy %> <img class="is-rounded" id="avatarPhoto" width="25" src="<%= reply.avatar %>"</img> </p>
+                        <form action="/messages/<%= message.id %>/<%= reply._id %> ?_method=DELETE" class="delete" method="POST">
+                            <button class="delete" aria-label="delete"></button>
+                        </form>
+                    </div>
+                    <div class="message-body">
+                        <%= reply.message %> 
+                    </div>
+                </article>
+            <% }) %>
+            <br><a class="button is-danger is-outlined is-rounded" href="/messages">Go back</a>
+        </div>
+    </div><br><br><br>
+</section>
 
 <%- include('../partials/footer') %>

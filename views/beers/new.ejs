@@ -23,16 +23,16 @@
     <% results.forEach(beer => { %>
     <div class="card">
         <div class="card-content">
-        <div class="media">
-            <div class="media-left">
-            <figure class="image is-24x24">
-            <img src="<%= beer.image_url %>" class="" alt="Placeholder image">
-            </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4"><%= beer.name %> </p>
-          <p class="subtitle is-6"><%= beer.tagline %></p>
-        </div>
+          <div class="media">
+              <div class="media-left">
+              <figure class="image is-24x24">
+              <img src="<%= beer.image_url %>" class="" alt="Placeholder image">
+              </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4"><%= beer.name %> </p>
+            <p class="subtitle is-6"><%= beer.tagline %></p>
+          </div>
     </div><br>
   
     <div class="content">
