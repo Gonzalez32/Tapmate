@@ -7,8 +7,9 @@
 ### Tapmate:
 ### Icebox:
 ### Links For Setup:
-# Mobile Responsive
-* Project Tapmate Is In Works For M-R!
-* Fixing Bugs Again!
-* Better Layout For Users!
-* MVP!
+# DEVELOPMENT (ABOUT 51% DONE!)
+* Mobile Responsive
+* Project Tapmate Is In Works For M-R
+* Fixing Bugs
+* Better Layout For Users
+* ^ MVP ^
