@@ -1,38 +1,44 @@
 <%- include('../partials/header') %>
-  <%- include('../partials/nav') %>
+<%- include('../partials/nav') %>
 
-<br><div class="container is-max-desktop">
-  <div class="notification is-warning">
-    <h1 class="title is-1"><%= title %> </h1>
-    <article class="media">
-      <figure class="media-left">
-        <p class="image is-128x128">
-          <img id="avatarPhoto" class="is-rounded" src="<%= userInfo.avatar ? userInfo.avatar : 'http://theoldreader.com/kittens/300/300/'  %>" alt="Card image cap">
-        </p>
-      </figure>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong><%= userInfo.name %></strong> <small><a href="mailto:<%= userInfo.email %>"><%= userInfo.email %></small></a> <small>Joined: <%= userInfo.createdAt.toLocaleString().split(',')[0] %></small>
-            <br>
-            <h6 class="title is-6">Favorite Beers:</h6>
-            <% beers.forEach(beer=> { %>
-              <a href="/beers/<%= beer.id %> ">
-                <%= beer.name %>
-              </a><br>
-            <% }) %><br>
-                <!-- This is where we'll render buttons to add/remove a user as a friend -->
-            <% if (!userInfo._id.equals(user._id) && !user.friends.includes(userInfo._id)) { %>
-                  <a href="/users/<%= userInfo._id %>/friend" class="btn btn-primary">Add Friend</a>
-            <% } %>
-            
-            <% if (!userInfo._id.equals(user._id) && user.friends.includes(userInfo._id)) { %>
-              <a href="/users/<%= userInfo._id %>/unfriend" class="btn btn-primary">Remove Friend</a>
-            <% } %>
+<section class="hero is-warning is-fullheight">
+  
+  <br><h1 class="title is-1 has-text-centered	">
+    <%= title %>
+  </h1>
+
+  <br><div class="container is-max-desktop">
+    <div class="notification is-dark">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-128x128">
+            <img id="avatarPhoto" class="is-rounded" src="<%= userInfo.avatar ? userInfo.avatar : 'http://theoldreader.com/kittens/300/300/'  %>" alt="Card image cap">
           </p>
-        </div>
-    </article>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong><%= userInfo.name %></strong> <small><a href="mailto:<%= userInfo.email %>"><%= userInfo.email %></small></a> <small>Joined: <%= userInfo.createdAt.toLocaleString().split(',')[0] %></small>
+              <br>
+              <h6 class="title is-6 has-text-white">Beer Collection:</h6>
+              <% beers.forEach(beer=> { %>
+                <a href="/beers/<%= beer.id %> ">
+                  <%= beer.name %>
+                </a><br>
+              <% }) %><br>
+                  <!-- This is where we'll render buttons to add/remove a user as a friend -->
+              <% if (!userInfo._id.equals(user._id) && !user.friends.includes(userInfo._id)) { %>
+                    <a href="/users/<%= userInfo._id %>/friend" class="btn btn-primary">Add Friend</a>
+              <% } %>
+              
+              <% if (!userInfo._id.equals(user._id) && user.friends.includes(userInfo._id)) { %>
+                <a href="/users/<%= userInfo._id %>/unfriend" class="btn btn-primary">Remove Friend</a>
+              <% } %>
+            </p>
+          </div>
+      </article>
+    </div>
   </div>
-</div>
+</section>
 
 <%- include('../partials/footer') %>
