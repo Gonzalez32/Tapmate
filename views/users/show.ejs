@@ -7,34 +7,35 @@
     <%= title %>
   </h1>
 
-  <br><div class="container is-max-desktop">
+  <br><div class="container is-fullhd">
     <div class="notification is-dark">
       <article class="media">
         <figure class="media-left">
-          <p class="image is-128x128">
+          <p class="image is-64x64">
             <img id="avatarPhoto" class="is-rounded" src="<%= userInfo.avatar ? userInfo.avatar : 'http://theoldreader.com/kittens/300/300/'  %>" alt="Card image cap">
           </p>
         </figure>
         <div class="media-content">
           <div class="content">
-            <p>
-              <strong><%= userInfo.name %></strong> <small><a href="mailto:<%= userInfo.email %>"><%= userInfo.email %></small></a> <small>Joined: <%= userInfo.createdAt.toLocaleString().split(',')[0] %></small>
-              <br>
-              <h6 class="title is-6 has-text-white">Beer Collection:</h6>
-              <% beers.forEach(beer=> { %>
-                <a href="/beers/<%= beer.id %> ">
-                  <%= beer.name %>
-                </a><br>
-              <% }) %><br>
-                  <!-- This is where we'll render buttons to add/remove a user as a friend -->
-              <% if (!userInfo._id.equals(user._id) && !user.friends.includes(userInfo._id)) { %>
-                    <a href="/users/<%= userInfo._id %>/friend" class="btn btn-primary">Add Friend</a>
-              <% } %>
-              
-              <% if (!userInfo._id.equals(user._id) && user.friends.includes(userInfo._id)) { %>
-                <a href="/users/<%= userInfo._id %>/unfriend" class="btn btn-primary">Remove Friend</a>
-              <% } %>
-            </p>
+              <p>
+                <strong><%= userInfo.name %></strong> <small><a href="mailto:<%= userInfo.email %>"><%= userInfo.email %></small></a> <small>Joined: <%= userInfo.createdAt.toLocaleString().split(',')[0] %></small>
+                <br>
+                <h6 class="title is-6 has-text-white">Beer Collection:</h6>
+                <% beers.forEach(beer=> { %>
+                  <a href="/beers/<%= beer.id %> ">
+                    <%= beer.name %>
+                  </a><br>
+                <% }) %><br>
+                    <!-- This is where we'll render buttons to add/remove a user as a friend -->
+                <% if (!userInfo._id.equals(user._id) && !user.friends.includes(userInfo._id)) { %>
+                      <a href="/users/<%= userInfo._id %>/friend" class="btn btn-primary">Add Friend</a>
+                <% } %>
+                
+                <% if (!userInfo._id.equals(user._id) && user.friends.includes(userInfo._id)) { %>
+                  <a href="/users/<%= userInfo._id %>/unfriend" class="btn btn-primary">Remove Friend</a>
+                <% } %>
+              </p>
+            </div>
           </div>
       </article>
     </div>
