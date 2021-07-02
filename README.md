@@ -18,6 +18,10 @@ This project was built for my (Unit-2-Project) while I was in GA. This was setup
 * Users can add their own beer collection?
 * Fix Bugs
 ### Links For Setup:
+* [Google Auth](https://cloud.google.com/nodejs/getting-started/authenticate-users)
+* [Google Fonts](https://fonts.google.com/)
+* [Bulma](https://bulma.io/documentation/elements/image/)
+* [Punk API](https://punkapi.com/)
 # DEVELOPMENT
 * Mobile Responsive
 * Fixing Bugs
