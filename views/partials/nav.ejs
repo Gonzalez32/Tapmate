@@ -3,6 +3,7 @@
       <a class="image is-96x96" href="/">
         <img class="is-rounded" src="https://cliply.co/wp-content/uploads/2019/07/371907850_BEER_TOAST_400x400.gif" >
       </a>
+    </div>
 
       <% if (user) { %> 
   
@@ -11,7 +12,6 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-    </div>
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
@@ -55,18 +55,18 @@
             </a>
           </div>
         </div>
-    </div> 
+      </div> 
 
       <% } else { %> 
 
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-success is-outlined" href="/auth/google">
-                    <strong>Google Login</strong>  
-                    </a>
-                </div>
-            </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-success is-outlined" href="/auth/google">
+              <strong>Google Login</strong>  
+            </a>
+          </div>
         </div>
+      </div>
     <% } %> 
 </nav>
