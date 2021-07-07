@@ -1,3 +1,6 @@
+<!-- Need to fix for mobile use. Login button is below the image logo might have to change the size! -->
+<!-- Changing the size did not help might have to use CSS witnin the file to make it work! -->
+<!--  -->
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="image is-96x96" href="/">
@@ -5,7 +8,7 @@
       </a>
     </div>
 
-      <% if (user) { %> 
+    <% if (user) { %> 
   
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
@@ -13,36 +16,37 @@
         <span aria-hidden="true"></span>
       </a>
   
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item" href="/beers/new">
-          Beer Search
-        </a>
-        
-        <a class="navbar-item" href="/beers">
-          Beer Collection
-        </a>
-        
-        <a class="navbar-item" href="/messages">
-          Message Board
-        </a>
-        
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/beers/new">
+            Beer Search
           </a>
-  
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/users">
-              User Lists
+          
+          <a class="navbar-item" href="/beers">
+            Beer Collection
+          </a>
+          
+          <a class="navbar-item" href="/messages">
+            Message Board
+          </a>
+          
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
             </a>
-            <a class="navbar-item" href="/users/profile">
-              User Profile
-            </a>
-            <!-- <hr class="navbar-divider">
-            <a class="navbar-item" href="http://o-x-touch.surge.sh/">
-              Report an issue
-            </a> -->
+    
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/users">
+                User Lists
+              </a>
+              <a class="navbar-item" href="/users/profile">
+                User Profile
+              </a>
+              <!-- <hr class="navbar-divider">
+              <a class="navbar-item" href="http://o-x-touch.surge.sh/">
+                Report an issue
+              </a> -->
+            </div>
           </div>
         </div>
       </div>
@@ -57,7 +61,7 @@
         </div>
       </div> 
 
-      <% } else { %> 
+    <% } else { %> 
 
       <div class="navbar-end">
         <div class="navbar-item">
