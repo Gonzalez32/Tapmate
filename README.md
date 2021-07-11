@@ -3,6 +3,12 @@
 ![frame1](https://i.imgur.com/X99UwyK.png)
 ![frame2](https://i.imgur.com/B9IuAUr.png)
 ### Final Outlook!
+![frame3](https://i.imgur.com/s8fWeSk.png)
+![frame4](https://i.imgur.com/Bfkc6eO.png)
+![frame5](https://i.imgur.com/6BHXvI9.png)
+![frame6](https://i.imgur.com/df0PkqV.png)
+![frame7](https://i.imgur.com/kWDal9e.png)
+![frame8](https://i.imgur.com/lCWFQrS.png)
 ### Technologies Uesd:
 * Javascript
 * CSS
